@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->callAfterResolving(\Fayne\CMS\Support\Modules\ModuleRegistry::class, function ($registry): void {
+            $registry->register('event', 'Event', \Fayne\Event\Filament\EventPlugin::class);
+        });
         $this->callAfterResolving(\Fayne\CMS\Support\Authorization\PermissionRegistry::class, function ($registry): void {
             $registry->register('event', require __DIR__ . '/../resources/permissions.php');
         });
