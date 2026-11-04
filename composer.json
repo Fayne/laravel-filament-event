@@ -1,0 +1,104 @@
+{
+    "name": "fayne/laravel-filament-event",
+    "description": "Event management for Laravel and Filament.",
+    "type": "library",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.4",
+        "illuminate/support": "^13.0",
+        "filament/filament": "^5.0",
+        "fayne/laravel-filament-cms-core": "dev-master",
+        "fayne/laravel-filament-store-locator": "dev-master",
+        "laravel/sanctum": "^4.0",
+        "spatie/eloquent-sortable": "^5.0",
+        "fayne/laravel-filament-qrcode": "dev-master"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.1",
+        "laravel/pint": "^1.27"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../laravel-filament-qrcode",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "fayne/laravel-filament-qrcode": "dev-master"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../laravel-filament-cms-core",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "fayne/laravel-filament-cms-core": "dev-master"
+                }
+            }
+        },
+        {
+            "type": "path",
+            "url": "../laravel-filament-store-locator",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "fayne/laravel-filament-store-locator": "dev-master"
+                }
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fayne\\Event\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "App\\": "tests/App/",
+            "Database\\Factories\\": "tests/database/factories/"
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "format": "pint --test",
+        "format:fix": "pint",
+        "lint": "@php tools/lint.php",
+        "check": [
+            "@lint",
+            "@format",
+            "@test"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fayne\\Event\\EventServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "authors": [
+        {
+            "name": "Fayne Guo",
+            "email": "fayne.guo@gmail.com"
+        }
+    ],
+    "keywords": [
+        "laravel",
+        "filament",
+        "event"
+    ],
+    "$schema": "https://getcomposer.org/schema.json",
+    "support": {
+        "email": "fayne.guo@gmail.com"
+    }
+}
