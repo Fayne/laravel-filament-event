@@ -30,6 +30,7 @@ class EventServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->publishes([__DIR__ . '/../database/migrations' => database_path('migrations')], 'filament-event-migrations');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'filament-event');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         if ($this->app->runningInConsole()) {
