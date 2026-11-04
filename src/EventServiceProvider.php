@@ -30,7 +30,7 @@ class EventServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->publishes([__DIR__ . '/../database/migrations' => database_path('migrations')], 'filament-event-migrations');
+        $this->publishes([__DIR__ . '/../database/migrations' => database_path('migrations')], ['filament-event-migrations', 'cms-module-assets']);
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'filament-event');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
         if ($this->app->runningInConsole()) {
@@ -38,7 +38,7 @@ class EventServiceProvider extends ServiceProvider
         }
         $this->publishes([
             __DIR__ . '/../config/filament-event.php' => config_path('filament-event.php'),
-        ], 'filament-event-config');
+        ], ['filament-event-config', 'cms-module-assets']);
 
         if (config('filament-event.api.enabled', true)) {
             Route::middleware(config('filament-event.api.middleware.public', ['api']))
